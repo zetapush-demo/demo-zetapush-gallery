@@ -1,13 +1,13 @@
 recipe fr.zetapush.gallery 1.0.0;
 
-service api = macro('macro_0') for 'src';
+service api = macro(__default) for 'src';
 
-service auth = simple('simple_0');
+service auth = simple(__default);
 
-service fs = zpfs_hdfs('zpfs_hdfs_0').options({
+service fs = zpfs_hdfs(__default).options({
 	upload_thumbnails: '250,500,1000'
 });
 
-service es = search('search_0');
+service es = search(__default);
 
-service task = cron('cron_0');
+service task = cron(__default);
