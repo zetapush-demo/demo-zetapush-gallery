@@ -43,8 +43,11 @@ const api = client.createService({
 })
 // Event de connexion
 client.onConnectionEstablished(() => {
-  $cards.textContent=('onConnectionEstablished')
   api.call({ name: 'listFiles' })
+  $status.textContent=('signal_wifi_4_bar')
+})
+client.onConnectionClosed(() => {
+  $status.textContent=('signal_wifi_off')
 })
 // Connexion au backend
 client.connect()

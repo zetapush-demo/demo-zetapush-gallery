@@ -3,6 +3,7 @@ const $file = document.querySelector('[type="file"]')
 const $form = document.querySelector('#form')
 const $tags = document.querySelector('#tags')
 const $progress = document.querySelector('.progress')
+const $status = document.querySelector('#connection-status')
 
 const UNSECURE_PATTERN = /^http:\/\/|^\/\//
 

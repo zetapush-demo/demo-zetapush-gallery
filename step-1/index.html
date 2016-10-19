@@ -6,7 +6,7 @@
     <title>Orange Dev Test Days Demo</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-    <style>nav { background-color: #26a69a; } main { height: calc(100vh - 64px); overflow-y: auto; } .center-cropped { height: 250px; object-fit: cover; object-position: center; } [data-tag]::before { content: attr(data-tag) }</style>
+    <style>nav { background-color: #26a69a; } main { height: calc(100vh - 64px); overflow-y: auto; } .center-cropped { height: 250px; object-fit: cover; object-position: center; } [data-tag]::before { content: attr(data-tag) } .brand-logo { width: 100%; }</style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script src="https://unpkg.com/zetapush-js@3.0.0-alpha.3/dist/zetapush.min.js"></script>
@@ -14,7 +14,10 @@
   <body>
     <nav>
       <div class="nav-wrapper">
-        <span class="brand-logo"><a href=".."><i class="material-icons">cloud_upload</i></a>Orange Dev Test Days</span>
+        <span class="brand-logo">
+          <a href=".."><i class="material-icons">cloud_upload</i></a>Orange Dev Test Days
+          <span class="right"><i id="connection-status" class="material-icons">signal_wifi_off</i></span>
+        </span>
       </div>
     </nav>
     <main>
