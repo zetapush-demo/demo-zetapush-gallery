@@ -2,4 +2,6 @@
 .DS_Store
 
 # Recipe user files
+/recipe/*.zmapp
 /recipe/zms.user.properties
+/recipe/target/
