@@ -1,0 +1,69 @@
+macroscript addFile(
+	string guid,
+	map metadata,
+	array tags
+) {
+	var file = fs.newFile({ guid, metadata, tags });
+
+	es.index({
+		id: file.url.guid,
+		data: file,
+		index: 'gallery',
+		type: 'file'
+	}) loud;
+
+	task.setTimeout({
+		delay: 60, 
+		deploymentId : 'macro_0', 
+		verb : 'call', 
+		parameter : {
+			name: 'deleteFile', 
+			parameters: { guid }
+		}
+	});
+
+} broadcast { file } on channel __selfName
+
+macroscript deleteFile(
+	string guid
+) {
+	fs.rm({
+		path: '/' + guid
+	});
+	es.delete({
+		id: guid,
+		index: 'gallery',
+		type: 'file'
+	});
+} broadcast { guid } on channel __selfName
+
+macroscript uploadFile(
+	string path = '/'
+) {
+	var upload = fs.newUploadUrl({ path });
+} return { upload } on channel __selfName
+
+macroscript listFiles(
+	string folder = '/'
+) {
+	var listing = fs.ls({ folder });
+} return { listing } on channel __selfName
+
+macroscript searchFiles(
+	array tags
+) {
+    var result = es.search({
+		indices: ['gallery'],
+      	query: {
+        	match: {
+          		tags: {
+            		query: str:join(' ', tags),
+            		operator: 'and'
+          		}
+        	}
+      	},
+  		types: ['file']
+    });
+    /** Destructure result properties */
+    var items = result.items;
+} return { items } on channel __selfName

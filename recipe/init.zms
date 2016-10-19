@@ -1,0 +1,21 @@
+es.search_createIndex({
+	index: 'gallery',
+	mappings: {
+		file: {
+			properties: {
+				tags: {
+					type: "string"
+				},
+				name: {
+					type: "string"
+				}
+			}
+		}
+	}
+});
+
+auth.memauth_createUser({
+	login: 'demo',
+	password: 'demo',
+	idempotence: Idempotence_IGNORE_IDENTICAL
+});
