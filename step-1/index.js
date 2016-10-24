@@ -1,6 +1,6 @@
 // Création du client ZetaPush
 const client = new ZetaPush.Client({
-  sandboxId: 'qOFdwGSn',
+  sandboxId: prompt('Set your sandbox id'),
   authentication() {
     return ZetaPush.Authentication.simple({
       login: 'demo',
